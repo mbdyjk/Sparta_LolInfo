@@ -18,8 +18,6 @@ export function ChampionCard({ champion, version }: ChampionCardProps) {
           width={100}
           height={100}
           className="mx-auto"
-          placeholder="blur"
-          blurDataURL="/placeholder.png"
           loading="lazy"
         />
         <h2 className="text-center mt-2 font-semibold">{champion.name}</h2>
