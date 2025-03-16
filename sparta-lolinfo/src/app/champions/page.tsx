@@ -3,6 +3,9 @@ import { ChampionCard } from "@/components/ChampionCard";
 import { fetchChampionList } from "@/utils/serverApi";
 import { Suspense } from "react";
 import { getLatestVersion } from "@/utils/serverApi";
+import { CHAMPIONS_PAGE_REVALIDATE } from "@/constants/config";
+
+export const revalidate = CHAMPIONS_PAGE_REVALIDATE;
 
 export default async function ChampionsPage() {
   let champions: Champion[];
