@@ -4,7 +4,7 @@ import { Champion, ChampionDetail } from "@/types/Champion";
 import { DDRAGON_BASE_URL } from "@/constants/config";
 
 // 최신 버전 가져오기 -> 버전이 자주 바뀌지는 않으므로 캐싱 데이터를 사용하는 최적화 필요
-async function getLatestVersion(): Promise<string> {
+export async function getLatestVersion(): Promise<string> {
   const res = await fetch(`${DDRAGON_BASE_URL}/api/versions.json`);
   if (!res.ok) throw new Error("버전 정보를 가져오지 못했습니다.");
   const versions = await res.json();
