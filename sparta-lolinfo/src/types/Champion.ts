@@ -16,4 +16,12 @@ export interface ChampionDetail extends Champion {
     magic: string;
     difficulty: string;
   };
+  spells: {
+    id: string;
+    name: string;
+    description: string;
+    image: {
+      full: string;
+    };
+  }[];
 }
