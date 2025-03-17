@@ -1,3 +1,4 @@
+// SSG 방식
 import { fetchItemList, getLatestVersion } from "@/utils/serverApi";
 import { Item } from "@/types/Item";
 import { ItemCard } from "@/components/ItemCard";
