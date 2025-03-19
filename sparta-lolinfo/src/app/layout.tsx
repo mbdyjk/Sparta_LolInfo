@@ -1,18 +1,7 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import Link from "next/link";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import ClientProvider from "@/components/ClientProvider";
 
 export const metadata: Metadata = {
   title: "Sparta LolInfo",
@@ -57,7 +46,9 @@ export default function RootLayout({
             </div>
           </nav>
         </header>
-        <main>{children}</main>
+        <ClientProvider>
+          <main>{children}</main>
+        </ClientProvider>
       </body>
     </html>
   );
