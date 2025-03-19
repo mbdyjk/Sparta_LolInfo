@@ -44,7 +44,7 @@ export default function Header() {
         </div>
         <button
           onClick={toggleDarkMode}
-          className="ml-4 p-2 bg-gray-700 dark:bg-gray-600 rounded"
+          className="ml-4 p-2 bg-gray-700 dark:bg-gray-600 rounded w-40"
         >
           {isDarkMode ? "라이트 모드" : "다크 모드"}
         </button>
