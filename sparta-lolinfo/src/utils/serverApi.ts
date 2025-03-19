@@ -3,13 +3,23 @@
 import { Champion, ChampionDetail } from "@/types/Champion";
 import { Item } from "@/types/Item";
 import { DDRAGON_BASE_URL } from "@/constants/config";
+import { REVALIDATE_CACHE_TIME } from "@/constants/config";
+
+let cachedVersion: string | null = null;
 
 // 최신 버전 가져오기 -> 버전이 자주 바뀌지는 않으므로 캐싱 데이터를 사용하는 최적화 필요
 export async function getLatestVersion(): Promise<string> {
-  const res = await fetch(`${DDRAGON_BASE_URL}/api/versions.json`);
+  if (cachedVersion != null) {
+    return cachedVersion;
+  }
+  const res = await fetch(`${DDRAGON_BASE_URL}/api/versions.json`, {
+    cache: "force-cache",
+    next: { revalidate: REVALIDATE_CACHE_TIME },
+  }); // Next.js 캐시에서 버전을 가져오고, 업데이트 주기를 하루로 지정
   if (!res.ok) throw new Error("버전 정보를 가져오지 못했습니다.");
-  const versions = await res.json();
-  return versions[0];
+  const versions = (await res.json()) as string[]; // API 응답 string[] 고정
+  cachedVersion = versions[0];
+  return cachedVersion;
 }
 
 // 챔피언 목록 가져오기
